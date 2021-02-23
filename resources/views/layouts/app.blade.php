@@ -60,9 +60,9 @@
                 || request()->routeIs('questions.*') ? 'active' : '' }}">Courses</a>
                 @can('admin-only', Auth::user())
                     <a href="{{ route('teachers.index') }}" class="list-group-item list-group-item-action {{ request()->routeIs('teachers.*') ? 'active' : '' }}">Users</a>
+                    <a href="{{ route('game_events.index') }}" class="list-group-item list-group-item-action {{ request()->routeIs('game_events.*') ? 'active' : '' }}">Game Events</a>
+                    {{-- <a href="{{ url('/videos') }}" class="list-group-item list-group-item-action disabled">Videos (Teacher)</a> --}}
                 @endcan
-                <a href="{{ route('game_events.index') }}" class="list-group-item list-group-item-action {{ request()->routeIs('game_events.*') ? 'active' : '' }}">Game Events</a>
-                {{-- <a href="{{ url('/videos') }}" class="list-group-item list-group-item-action disabled">Videos (Teacher)</a> --}}
 
                 @can('admin-only', Auth::user())
                     <div class="sidebar-heading">

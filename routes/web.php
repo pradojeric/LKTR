@@ -53,7 +53,8 @@ Route::middleware('auth')->group(function()
     Route::get('/teachers/courses/{teacher}', 'TeacherController@changeCourses')->name('teachers.courses')->middleware('can:admin-only');
     Route::put('/teachers/courses/{teacher}', 'TeacherController@updateCourses')->name('teachers.courses.update')->middleware('can:admin-only');
 
-    Route::resource('game_events', 'GameEventController');
+    Route::resource('game_events', 'GameEventController')->middleware('can:admin-only');
+    Route::resource('game_events.event_users', 'EventUserController')->shallow()->middleware('can:admin-only');
 
     Route::resource('courses', 'CourseController');
     Route::get('/courses/restore/{trashed_course}', 'CourseController@restoreCourse')->name('courses.restore');

@@ -34,22 +34,6 @@
             <p>{{ $course->description }}</p>
         </div>
 
-        @can('admin-only')
-            <div class="col-md-3">
-                <h5 class="font-weight-bold">Course Product ID</h5>
-            </div>
-            <div class="col-md-9">
-                <p>{{ $course->slug }}</p>
-            </div>
-
-            <div class="col-md-3">
-                <h5 class="font-weight-bold">Free</h5>
-            </div>
-            <div class="col-md-9">
-                <p>@if($course->free) Yes @else No @endif</p>
-            </div>
-        @endcan
-
         <div class="col-md-6">
             <a href="{{ route('courses.subjects.index', $course)}}" class="btn btn-sm btn-primary">View Subjects</a>
 

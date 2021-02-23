@@ -27,9 +27,11 @@
                         @foreach ($game_events as $event)
                             <tr>
                                 <td>{{ $event->name }}</td>
-                                <td>{{ date('M d, Y H:i A', strtotime($event->starting_event)) }}</td>
-                                <td>{{ date('M d, Y H:i A', strtotime($event->ending_event)) }}</td>
-                                <td><button>Action</button></td>
+                                <td>{{ date('M d, Y h:i A', strtotime($event->starting_event)) }}</td>
+                                <td>{{ date('M d, Y h:i A', strtotime($event->ending_event)) }}</td>
+                                <td>
+                                    <a href="{{ route('game_events.show', $event) }}" type="button" class="btn btn-sm btn-primary btn-block">View</a>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>

@@ -108,7 +108,6 @@ class CourseController extends Controller
 
         $free = $request->free ? true : false;
 
-
         $course->update([
             'name' => $request->name,
             'abbreviation' => $request->abbreviation,

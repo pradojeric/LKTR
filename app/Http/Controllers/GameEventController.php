@@ -58,7 +58,7 @@ class GameEventController extends Controller
             'ending_event' => $ending_event,
         ]);
 
-        return redirect()->route('game_events.index');
+        return redirect()->route('game_events.index')->with('success', 'Event successfully created');
     }
 
     /**
@@ -70,6 +70,7 @@ class GameEventController extends Controller
     public function show(GameEvent $gameEvent)
     {
         //
+        return view('pages.game_events.view', compact('gameEvent'));
     }
 
     /**
@@ -81,6 +82,7 @@ class GameEventController extends Controller
     public function edit(GameEvent $gameEvent)
     {
         //
+        return view('pages.game_events.edit', compact('gameEvent'));
     }
 
     /**
@@ -93,6 +95,26 @@ class GameEventController extends Controller
     public function update(Request $request, GameEvent $gameEvent)
     {
         //
+        $request->validate([
+            'name' => 'required',
+            'start_date' => 'required|date',
+            'start_time' => 'required|date_format:H:i',
+            'end_date' => 'required|date',
+            'end_time' => 'required|date_format:H:i',
+            'description' => 'required'
+        ]);
+
+        $starting_event = date('Y-m-d H:i:s', strtotime("$request->start_date $request->start_time"));
+        $ending_event = date('Y-m-d H:i:s', strtotime("$request->end_date $request->end_time"));
+
+        $gameEvent->update([
+            'name' => $request->name,
+            'description' => $request->description,
+            'starting_event' => $starting_event,
+            'ending_event' => $ending_event,
+        ]);
+
+        return redirect()->route('game_events.show', $gameEvent)->with('success', 'Event successfully updated');
     }
 
     /**
