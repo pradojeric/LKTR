@@ -8,9 +8,9 @@
 </div>
 </div>
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-10">
             @can('admin-only')
-                <a href="{{ route('game_events.create') }}" type="button" class="btn btn-primary my-3">Add Event</a>
+                <a href="{{ route('game_events.create') }}" type="button" class="btn btn-primary my-3"><i class="fa fa-plus mr-2"></i>Add Event</a>
             @endcan
             <div class="card p-4 shadow-sm rounded">
 
@@ -20,7 +20,9 @@
                             <th>Events</th>
                             <th>Start Date</th>
                             <th>End Date</th>
-                            <th>Action</th>
+                            <th>Event Code</th>
+                            <th>Status</th>
+                            <th width="15%">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -29,8 +31,18 @@
                                 <td>{{ $event->name }}</td>
                                 <td>{{ date('M d, Y h:i A', strtotime($event->starting_event)) }}</td>
                                 <td>{{ date('M d, Y h:i A', strtotime($event->ending_event)) }}</td>
+                                <td>{{ $event->event_code }}</td>
                                 <td>
-                                    <a href="{{ route('game_events.show', $event) }}" type="button" class="btn btn-sm btn-primary btn-block">View</a>
+                                    @if(strtotime($event->starting_event) == strtotime(date('Y-m-d')))
+                                        In Progress
+                                    @elseif(strtotime($event->starting_event) > strtotime(date('Y-m-d')) || strtotime($event->ending_event) > strtotime(date('Y-m-d')))
+                                        Not Yet
+                                    @else
+                                        Finished
+                                    @endif
+                                </td>
+                                <td>
+                                    <a href="{{ route('game_events.show', $event) }}" type="button" class="dropdown-item text-primary"><i class="fa fa-eye mr-1"></i>View</a>
                                 </td>
                             </tr>
                         @endforeach

@@ -15,7 +15,7 @@ class CreateEventUsersTable extends Migration
     {
         Schema::create('event_users', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('game_event_id');
+            $table->foreignId('game_event_id')->constrained('game_events')->onDelete('cascade');
             $table->string('full_name');
             $table->string('email')->unique();
             $table->string('code')->unique();

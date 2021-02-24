@@ -67,7 +67,7 @@ class User extends Authenticatable
 
     public function roles()
     {
-        return $this->belongsToMany('App\Role')->withTimeStamps();
+        return $this->belongsToMany(Role::class)->withTimeStamps();
     }
 
     public function assignTo($role)
@@ -86,7 +86,7 @@ class User extends Authenticatable
     }
 
     public function courses(){
-        return $this->belongsToMany('App\Course')->withTimeStamps();
+        return $this->belongsToMany(Course::class)->withTimeStamps();
     }
 
     public function coursesAllowed($courses)
@@ -96,11 +96,11 @@ class User extends Authenticatable
 
     public function plainTextTokens()
     {
-        return $this->hasMany('App\Token');
+        return $this->hasMany(Token::class);
     }
 
     public function version()
     {
-        return $this->hasOne('App\Version');
+        return $this->hasOne(Version::class);
     }
 }

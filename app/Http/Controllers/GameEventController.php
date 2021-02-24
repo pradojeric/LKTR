@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\GameEvent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Str;
 
 class GameEventController extends Controller
 {
@@ -56,6 +57,7 @@ class GameEventController extends Controller
             'description' => $request->description,
             'starting_event' => $starting_event,
             'ending_event' => $ending_event,
+            'event_code' => Str::random(8),
         ]);
 
         return redirect()->route('game_events.index')->with('success', 'Event successfully created');

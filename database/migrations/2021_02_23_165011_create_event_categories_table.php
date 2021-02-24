@@ -15,6 +15,8 @@ class CreateEventCategoriesTable extends Migration
     {
         Schema::create('event_categories', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('game_event_id')->constrained('game_events')->onDelete('cascade');
+            $table->string('category');
             $table->timestamps();
         });
     }

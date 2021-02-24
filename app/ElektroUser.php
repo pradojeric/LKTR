@@ -15,6 +15,6 @@ class ElektroUser extends Model
 
     public function leaderboards()
     {
-        return $this->hasMany('App\Leaderboard', 'elektro_user_id');
+        return $this->hasMany(Leaderboard::class, 'elektro_user_id');
     }
 }

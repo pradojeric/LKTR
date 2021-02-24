@@ -12,6 +12,6 @@ class Ability extends Model
     ];
 
     public function roles(){
-        return $this->belongsToMany('App\Role')->withTimeStamps();
+        return $this->belongsToMany(Role::class)->withTimeStamps();
     }
 }

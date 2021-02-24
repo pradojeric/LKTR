@@ -13,11 +13,11 @@ class Leaderboard extends Model
 
     public function courses()
     {
-        return $this->belongsTo('App\Courses');
+        return $this->belongsTo(Course::class);
     }
 
     public function elektroUser()
     {
-        return $this->belongsTo('App\ElektroUser', 'elektro_user_id');
+        return $this->belongsTo(ElektroUser::class, 'elektro_user_id');
     }
 }

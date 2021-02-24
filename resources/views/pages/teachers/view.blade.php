@@ -9,8 +9,8 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="d-flex justify-content-between mx-2 my-3">
-                <a href="{{ route('teachers.index') }}" class="btn btn-danger">Back</a>
-                <a href="{{ route('teachers.edit', $teacher)}}" class="btn btn-primary">Edit Profile</a>
+                <a href="{{ route('teachers.index') }}" class="btn btn-danger"><i class="fa fa-arrow-left mr-2"></i>Back</a>
+                <a href="{{ route('teachers.edit', $teacher)}}" class="btn btn-primary"><i class="fa fa-user-edit mr-2"></i>Edit Profile</a>
             </div>
             <div class="mx-2 my-4 py-4">
                 <div class="col-sm-12 mx-auto">
@@ -38,7 +38,7 @@
                                     Role:
                                 </div>
                                 <div class="col-sm-2">
-                                    <a href="{{ route('teachers.role', $teacher) }}" class="btn btn-sm btn-info">Change Role</a>
+                                    <a href="{{ route('teachers.role', $teacher) }}" class="btn btn-sm btn-info"><i class="fa fa-user-tag mr-1"></i>Change</a>
                                 </div>
                                 <div class="col-sm-4">
                                     {{ optional($teacher->role)->role }}
@@ -50,7 +50,7 @@
                                     Courses:
                                 </div>
                                 <div class="col-sm-2">
-                                    <a href="{{ route('teachers.courses', $teacher) }}" class="btn btn-sm btn-info">Manage</a>
+                                    <a href="{{ route('teachers.courses', $teacher) }}" class="btn btn-sm btn-info"><i class="fa fa-tasks mr-1"></i>Manage</a>
                                 </div>
                                 <div class="col-sm-6">
                                     <ul>

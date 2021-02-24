@@ -17,6 +17,7 @@ class CreateGameEventsTable extends Migration
             $table->id();
             $table->string('name');
             $table->longText('description');
+            $table->string('event_code')->unique();
             $table->dateTime('starting_event');
             $table->dateTime('ending_event');
             $table->timestamps();

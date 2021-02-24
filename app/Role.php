@@ -13,7 +13,7 @@ class Role extends Model
 
     public function abilities()
     {
-        return $this->belongsToMany('App\Ability', 'ability_role')->withTimeStamps();
+        return $this->belongsToMany(Ability::class, 'ability_role')->withTimeStamps();
     }
 
     public function allowTo($ability)
@@ -23,6 +23,6 @@ class Role extends Model
 
     public function users()
     {
-        return $this->belongsTo('App\RoleUser');
+        return $this->belongsTo(RoleUser::class);
     }
 }

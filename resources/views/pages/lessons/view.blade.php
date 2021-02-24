@@ -10,8 +10,8 @@
 </div>
     <div class="row justify-content-center">
         <div class="col-md-11">
-        <a href="{{ route('subjects.lessons.index', $lesson->subject) }}" type="button" class="btn btn-danger my-3">Back</a>
-        <a href="{{ route('lessons.questions.create', $lesson) }}" type="button" class="btn btn-primary my-3">Add Question</a>
+        <a href="{{ route('subjects.lessons.index', $lesson->subject) }}" type="button" class="btn btn-danger my-3"><i class="fa fa-arrow-left mr-1"></i>Back</a>
+        <a href="{{ route('lessons.questions.create', $lesson) }}" type="button" class="btn btn-primary my-3"><i class="fa fa-plus mr-1"></i>Add Question</a>
             <div class="card p-4 shadow-sm rounded">
                 <table class="table table-striped bg-light border-0">
                     <thead class="bg-primary text-white">

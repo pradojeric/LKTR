@@ -9,7 +9,7 @@
 </div>
     <div class="row justify-content-center">
         <div class="col-md-8">
-        <a href="{{ route('teachers.create') }}" type="button" class="btn btn-primary my-3">Add User</a>
+        <a href="{{ route('teachers.create') }}" type="button" class="btn btn-primary my-3"><i class="fa fa-user-plus mr-2"></i>Add User</a>
             <div class="card shadow-sm p-4 rounded">
 
                 <table class="table table-striped bg-light border-0">
@@ -29,8 +29,8 @@
                             <td>{{ $teacher->name }}</td>
                             <td>{{ optional($teacher->role)->role }}</td>
                             <td>
-                                <a href="{{ route('teachers.show', $teacher) }}" type="button" class="btn btn-sm btn-primary">View</a>
-                                <a type="button" class="btn btn-sm btn-danger">Delete</a>
+                                <a href="{{ route('teachers.show', $teacher) }}" type="button" class="dropdown-item"><i class="fa fa-eye mr-1"></i>View</a>
+                                <a type="button" class="dropdown-item text-danger"><i class="fa fa-trash mr-1"></i>Delete</a>
                             </td>
                         </tr>
                         @endforeach

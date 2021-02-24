@@ -13,11 +13,11 @@ class Subject extends Model
 
     public function course()
     {
-        return $this->belongsTo('App\Course');
+        return $this->belongsTo(Course::class);
     }
 
     public function lessons()
     {
-        return $this->hasMany('App\Lesson');
+        return $this->hasMany(Lesson::class);
     }
 }

@@ -10,7 +10,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             @can('admin-only')
-                <a href="{{ route('courses.create') }}" type="button" class="btn btn-primary my-3">Add Course</a>
+                <a href="{{ route('courses.create') }}" type="button" class="btn btn-primary my-3"><i class="fa fa-plus mr-1"></i>Add Course</a>
             @endcan
             <div class="card p-4 shadow-sm rounded">
 
@@ -28,9 +28,10 @@
                                     <td>{{ $course->name }}</td>
                                     <td>
                                         @if($course->trashed())
-                                            <a href="{{ route('courses.restore', $course)}}" type="button" class="btn btn-sm btn-secondary btn-block">Restore</a>
+
+                                            <a href="{{ route('courses.restore', $course)}}" class="dropdown-item text-info"><i class="fas fa-sync mr-1"></i> Restore</a>
                                         @else
-                                            <a href="{{ route('courses.show', $course)}}" type="button" class="btn btn-sm btn-primary btn-block">View</a>
+                                            <a href="{{ route('courses.show', $course)}}" class="dropdown-item"><i class="fas fa-eye mr-1"></i> View</a>
                                         @endif
                                     </td>
                                 </tr>

@@ -18,11 +18,11 @@ class Lesson extends Model
 
     public function questions()
     {
-        return $this->hasMany('App\Question');
+        return $this->hasMany(Question::class);
     }
 
     public function subject()
     {
-        return $this->belongsTo('App\Subject');
+        return $this->belongsTo(Subject::class);
     }
 }

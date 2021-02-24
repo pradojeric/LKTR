@@ -9,14 +9,14 @@
 </div>
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <a href="{{ route('courses.show', $course) }}" type="button" class="btn btn-danger my-3">Back</a>
-            <a href="{{ route('courses.subjects.create', $course) }}" type="button" class="btn btn-primary my-3">Add Subject</a>
+            <a href="{{ route('courses.show', $course) }}" type="button" class="btn btn-danger my-3"><i class="fa fa-arrow-left mr-1"></i>Back</a>
+            <a href="{{ route('courses.subjects.create', $course) }}" type="button" class="btn btn-primary my-3"><i class="fa fa-plus mr-1"></i>Add Subject</a>
             <div class="card p-4 shadow-sm rounded">
                 <table class="table table-striped bg-light border-0">
                     <thead class="bg-primary text-white">
                     <tr>
                         <th>Name</th>
-                        <th>Action</th>
+                        <th width="30%">Action</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -24,10 +24,10 @@
                             <tr id="row">
                                 <td id="name">{{ $subject->name }}</td>
                                 <td>
-                                    <a href="{{ route('subjects.lessons.index', $subject) }}" class="btn btn-sm btn-info btn-block">Lessons</a>
-                                    <a href="{{ route('subjects.edit', $subject) }}" class="btn btn-sm btn-primary btn-block">Edit</a>
+                                    <a href="{{ route('subjects.lessons.index', $subject) }}" class="dropdown-item"><i class="fa fa-eye mr-1"></i>View Lessons</a>
+                                    <a href="{{ route('subjects.edit', $subject) }}" class="dropdown-item text-info"><i class="fas fa-edit mr-1"></i>Edit</a>
                                     @can('admin-only')
-                                        <button type="button" class="btn btn-sm btn-danger btn-block" id="delete" data-id="{{ $subject->id }}">Delete</button>
+                                        <button type="button" class="dropdown-item text-danger" id="delete" data-id="{{ $subject->id }}"><i class="fa fa-trash mr-1"></i>Delete</button>
                                     @endcan
                                 </td>
                             </tr>

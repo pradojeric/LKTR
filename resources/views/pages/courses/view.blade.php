@@ -35,7 +35,7 @@
         </div>
 
         <div class="col-md-6">
-            <a href="{{ route('courses.subjects.index', $course)}}" class="btn btn-sm btn-primary">View Subjects</a>
+            <h6>Subjects</h6>
 
             <ul>
                 @foreach($course->subjects as $subject)
@@ -46,7 +46,7 @@
 
         <div class="col-md-6">
             @can('admin-only')
-                <span class="btn btn-sm">View Users</span>
+                <h6>View Users</h6>
                 <ul>
                     @foreach($course->teacherUser as $users)
                         <li>{{ $users->teacher->full_name }}</li>
@@ -60,16 +60,16 @@
         <div class="col-md-12 mt-5">
             <div class="d-flex justify-content-between">
 
-                <a href="{{ route('courses.index') }}" class="btn btn-sm btn-info">Back</a>
+                <a href="{{ route('courses.index') }}" class="btn btn-sm btn-danger"><i class="fa fa-arrow-left mr-1"></i>Back</a>
                 <div class="d-flex flex-row">
                     @can('admin-only')
-                        <button type="button" class="btn btn-sm btn-danger mr-3" id="delete" data-id={{ $course->slug }}>
-                            Delete
+                        <button type="button" class="btn btn-sm btn-danger mr-2" id="delete" data-id={{ $course->slug }}>
+                            <i class="fa fa-trash mr-1"></i>Delete
                         </button>
-                    <a href="{{ route('courses.edit', $course)}}" class="btn btn-sm btn-primary">Edit</a>
+                    <a href="{{ route('courses.edit', $course)}}" class="btn btn-sm btn-info mr-2"><i class="fa fa-edit mr-1"></i>Edit</a>
                     @endcan
+                    <a href="{{ route('courses.subjects.index', $course)}}" class="btn btn-sm btn-primary"><i class="fa fa-eye mr-1"></i>View Subjects</a>
                 </div>
-
             </div>
         </div>
     </div>

@@ -13,11 +13,11 @@ class Question extends Model
 
     public function answers()
     {
-        return $this->hasMany('App\Answer');
+        return $this->hasMany(Answer::class);
     }
 
     public function lesson()
     {
-        return $this->belongsTo('App\Lesson');
+        return $this->belongsTo(Lesson::class);
     }
 }

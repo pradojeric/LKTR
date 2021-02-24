@@ -25,8 +25,8 @@
 
 
             <div class="col-sm-12 text-right mt-5">
-                <a href="{{ route('subjects.lessons.index', $subject) }}" type="submit" class="btn btn-sm btn-danger">Cancel</a>
-                <button type="submit" class="btn btn-sm btn-primary">Save</button>
+                <a href="{{ route('subjects.lessons.index', $subject) }}" type="submit" class="btn btn-sm btn-danger"><i class="fa fa-arrow-left mr-1"></i>Cancel</a>
+                <button type="submit" class="btn btn-sm btn-info"><i class="fa fa-save mr-1"></i>Save</button>
             </div>
 
 

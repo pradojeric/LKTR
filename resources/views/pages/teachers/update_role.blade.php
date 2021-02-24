@@ -18,8 +18,8 @@
                     </select>
                 </div>
             </div>
-            <a href="{{ route('teachers.show', $teacher) }}" class="btn btn-danger">Back</a>
-            <input type="submit" value="Confirm" class="btn btn-primary">
+            <a href="{{ route('teachers.show', $teacher) }}" class="btn btn-danger"><i class="fa fa-arrow-left mr-1"></i>Back</a>
+            <button type="submit" class="btn btn-info"><i class="fa fa-save mr-1"></i>Confirm</button>
        </form>
     </div>
 </div>

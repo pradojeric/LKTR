@@ -21,21 +21,21 @@ class Course extends Model
 
     public function subjects()
     {
-        return $this->hasMany('App\Subject');
+        return $this->hasMany(Subject::class);
     }
 
     public function teacherUser()
     {
-        return $this->hasMany('App\CourseUser');
+        return $this->hasMany(CourseUser::class);
     }
 
     public function leaderboards()
     {
-        return $this->hasMany('App\Leaderboards');
+        return $this->hasMany(Leaderboard::class);
     }
 
     public function users()
     {
-        return $this->belongsToMany('App\User')->withTimeStamps();
+        return $this->belongsToMany(User::class)->withTimeStamps();
     }
 }
