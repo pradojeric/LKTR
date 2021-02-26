@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\EventCategory;
+use App\GameEvent;
 use Illuminate\Http\Request;
 
 class EventCategoryController extends Controller
@@ -12,9 +13,10 @@ class EventCategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(GameEvent $game_event)
     {
         //
+        return view('pages.game_events.categories.index', compact('game_event'));
     }
 
     /**
@@ -22,9 +24,10 @@ class EventCategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(GameEvent $game_event)
     {
         //
+        return view('pages.game_events.categories.add', compact('game_event'));
     }
 
     /**
@@ -33,9 +36,16 @@ class EventCategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, GameEvent $game_event)
     {
         //
+        $validated = $request->validate([
+            'category' => 'required'
+        ]);
+
+        $game_event->eventCategories()->create($validated);
+
+        return redirect()->route('game_events.event_categories.index', $game_event)->with('success', 'Category successfully added');
     }
 
     /**
@@ -47,6 +57,7 @@ class EventCategoryController extends Controller
     public function show(EventCategory $eventCategory)
     {
         //
+
     }
 
     /**
@@ -58,6 +69,7 @@ class EventCategoryController extends Controller
     public function edit(EventCategory $eventCategory)
     {
         //
+        return view('pages.game_events.categories.edit', compact('eventCategory'));
     }
 
     /**
@@ -70,6 +82,13 @@ class EventCategoryController extends Controller
     public function update(Request $request, EventCategory $eventCategory)
     {
         //
+        $validated = $request->validate([
+            'category' => 'required',
+        ]);
+
+        $eventCategory->update($validated);
+
+        return redirect()->route('game_events.event_categories.index', $eventCategory->gameEvent)->with('success', 'Category successfully updated');
     }
 
     /**

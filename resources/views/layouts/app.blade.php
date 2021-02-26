@@ -62,7 +62,7 @@
                 || request()->routeIs('questions.*') ? 'active' : '' }}"><i class="fa fa-book-open mr-2"></i>Courses</a>
                 @can('admin-only', Auth::user())
                     <a href="{{ route('teachers.index') }}" class="list-group-item list-group-item-action {{ request()->routeIs('teachers.*') ? 'active' : '' }}"><i class="fa fa-user mr-2"></i>Users</a>
-                    <a href="{{ route('game_events.index') }}" class="list-group-item list-group-item-action {{ request()->routeIs('game_events.*') ? 'active' : '' }}"><i class="fa fa-calendar mr-2"></i>Game Events</a>
+                    <a href="{{ route('game_events.index') }}" class="list-group-item list-group-item-action {{ request()->is('events/*') ? 'active' : '' }}"><i class="fa fa-calendar mr-2"></i>Game Events</a>
                     {{-- <a href="{{ url('/videos') }}" class="list-group-item list-group-item-action disabled">Videos (Teacher)</a> --}}
                 @endcan
 

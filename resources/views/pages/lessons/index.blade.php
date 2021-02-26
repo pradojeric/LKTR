@@ -24,7 +24,7 @@
                     <tr id="row">
                         <td id="name">{{ $lesson->name }}</td>
                         <td>
-                            <a href="{{ route('lessons.show', $lesson) }}" type="button" class="dropdown-item text-primary"><i class="fa fa-eye mr-1"></i>View</a>
+                            <a href="{{ route('lessons.questions.index', $lesson) }}" type="button" class="dropdown-item text-primary"><i class="fa fa-eye mr-1"></i>View</a>
                             <a href="{{ route('lessons.edit', $lesson) }}" type="button" class="dropdown-item text-info"><i class="fa fa-edit mr-1"></i>Edit</a>
                             @can('admin-only')
                                 <button type="button" class="dropdown-item text-danger" id="delete" data-id="{{ $lesson->id }}"><i class="fa fa-trash mr-1"></i>Delete</button>

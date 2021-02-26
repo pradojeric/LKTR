@@ -60,7 +60,7 @@
                 <div class="d-flex flex-row">
                     <a href="{{ route('game_events.edit', $gameEvent)}}" class="btn btn-sm btn-primary mr-2"><i class="fa fa-edit mr-1"></i>Edit</a>
                     <a href="{{ route('game_events.event_users.index', $gameEvent) }}" class="btn btn-sm btn-secondary mr-2"><i class="fa fa-users mr-1"></i>View Registered User</a>
-                    <a href="#" class="btn btn-sm btn-info"><i class="fa fa-eye mr-1"></i>View Categories</a>
+                    <a href="{{ route('game_events.event_categories.index', $gameEvent) }}" class="btn btn-sm btn-info"><i class="fa fa-eye mr-1"></i>View Categories</a>
                 </div>
             </div>
         </div>

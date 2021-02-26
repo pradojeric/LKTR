@@ -53,8 +53,18 @@ Route::middleware('auth')->group(function()
     Route::get('/teachers/courses/{teacher}', 'TeacherController@changeCourses')->name('teachers.courses')->middleware('can:admin-only');
     Route::put('/teachers/courses/{teacher}', 'TeacherController@updateCourses')->name('teachers.courses.update')->middleware('can:admin-only');
 
-    Route::resource('game_events', 'GameEventController')->middleware('can:admin-only');
-    Route::resource('game_events.event_users', 'EventUserController')->shallow()->middleware('can:admin-only');
+    Route::prefix('/events/')->middleware('can:admin-only')->group(function(){
+        Route::resource('game_events', 'GameEventController');
+        Route::resource('game_events.event_users', 'EventUserController')->shallow();
+        Route::resource('game_events.event_categories', 'EventCategoryController')->shallow();
+        Route::resource('event_categories.event_questions', 'EventQuestionController')->shallow();
+
+        Route::get('/get_categories/', 'EventQuestionController@getCategories');
+
+        Route::post('/enable/{question}', 'EventQuestionController@enable');
+        Route::get('/copy/{category_id}/{question_id}', 'EventQuestionController@copy')->name('event_question.copy');
+        Route::get('/move/{category_id}/{question_id}', 'EventQuestionController@move')->name('event_question.move');
+    });
 
     Route::resource('courses', 'CourseController');
     Route::get('/courses/restore/{trashed_course}', 'CourseController@restoreCourse')->name('courses.restore');
@@ -62,7 +72,6 @@ Route::middleware('auth')->group(function()
     Route::resource('courses.subjects', 'SubjectController')->shallow();
     Route::resource('subjects.lessons', 'LessonController')->shallow();
     Route::resource('lessons.questions', 'QuestionController')->shallow();
-
 
     Route::prefix('/question')->group(function()
     {

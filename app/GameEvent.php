@@ -6,16 +6,27 @@ use Illuminate\Database\Eloquent\Model;
 
 class GameEvent extends Model
 {
-    //
-    protected $guarded = [];
 
+    protected $fillable = [
+        'name', 'description', 'event_code', 'starting_event', 'ending_event'
+    ];
     /**
      * Get all of the comments for the GameEvent
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function eventUsers(): HasMany
+    public function eventUsers()
     {
         return $this->hasMany(EventUser::class);
+    }
+
+    /**
+     * Get all of the eventCategories for the GameEvent
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function eventCategories()
+    {
+        return $this->hasMany(EventCategory::class);
     }
 }
