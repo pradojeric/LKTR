@@ -6,6 +6,7 @@
 <div class="row justify-content-center">
     <div class="col-md-8">
         <h3 class="text-center text-white my-5">{{ $lesson->name }}</h3>
+        <h6 class="text-center text-white">{{ $lesson->subject->course->name }}</h6>
     </div>
 </div>
     <div class="row justify-content-center">

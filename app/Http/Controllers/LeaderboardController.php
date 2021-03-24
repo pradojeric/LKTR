@@ -10,7 +10,10 @@ class LeaderboardController extends Controller
     public function uploadScore(Request $request, $code)
     {
         if($code == "arzA-Game+20"){
-            Leaderboard::create([
+            Leaderboard::updateOrCreate([
+                'elektro_user_id' => $request->uId,
+                'course_id' => $request->course_id,
+            ],[
                 'elektro_user_id' => $request->uId,
                 'course_id' => $request->course_id,
                 'score' => $request->score,

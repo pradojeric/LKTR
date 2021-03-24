@@ -36,10 +36,18 @@ Route::get('/token/{code}', function($code){
         return "error";
 });
 
+Route::get('/get_server_time', 'ServerTimeController@getServerTime');
+
 Route::post('/uploadScore/{code}', 'LeaderboardController@uploadScore');
 Route::post('/storeUser/{code}', 'ElektroUserController@storeUser');
 Route::post('/updateUser/{code}', 'ElektroUserController@updateUser');
 Route::get('/getDownloadBar/{code}', 'APIController@progressBar');
+
+Route::post('/register_user', 'EventUserController@registerUser');
+Route::post('/check_event_code/{code}', 'EventUserController@checkEventCode')->name('check_event_code');
+Route::delete('/delete/event_users/{game_event}', 'EventUserController@deleteAll')->name('delete_event_users');
+
+
 
 Route::middleware('auth')->group(function()
 {
@@ -56,6 +64,12 @@ Route::middleware('auth')->group(function()
     Route::prefix('/events/')->middleware('can:admin-only')->group(function(){
         Route::resource('game_events', 'GameEventController');
         Route::resource('game_events.event_users', 'EventUserController')->shallow();
+
+        Route::get('/game_events/send_event_code/{event_user}', 'EventUserController@sendEventCode')->name('send_event_code');
+        Route::get('/game_events/revoke_code/{event_user}', 'EventUserController@revokeCode')->name('revoke_code');
+
+        Route::get('/event/{game_event}/leaderboard', 'EventLeaderboardController@index')->name('event_leaderboard');
+
         Route::resource('game_events.event_categories', 'EventCategoryController')->shallow();
         Route::resource('event_categories.event_questions', 'EventQuestionController')->shallow();
 

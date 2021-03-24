@@ -109,11 +109,15 @@ class GameEventController extends Controller
         $starting_event = date('Y-m-d H:i:s', strtotime("$request->start_date $request->start_time"));
         $ending_event = date('Y-m-d H:i:s', strtotime("$request->end_date $request->end_time"));
 
+        if(empty($request->status)) $status = false;
+        else $status = true;
+
         $gameEvent->update([
             'name' => $request->name,
             'description' => $request->description,
             'starting_event' => $starting_event,
             'ending_event' => $ending_event,
+            'status' => $status,
         ]);
 
         return redirect()->route('game_events.show', $gameEvent)->with('success', 'Event successfully updated');

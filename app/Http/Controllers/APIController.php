@@ -13,6 +13,8 @@ use App\Http\Resources\CourseSubjects as CourseSubjectResource;
 use App\Http\Resources\LessonQuestions as LessonQuestionResource;
 use App\Http\Resources\Version as VersionResource;
 use App\Http\Resources\Leaderboards as LeaderboardResource;
+use App\Http\Resources\EventLeaderboards as EventLeaderboardResource;
+use App\Http\Resources\GameEvent as GameEventResource;
 use App\Course;
 use App\Subject;
 use App\Question;
@@ -20,6 +22,8 @@ use App\Answer;
 use App\Lesson;
 use App\Version;
 use App\Leaderboard;
+use App\EventLeaderboard;
+use App\GameEvent;
 
 
 class APIController extends Controller
@@ -48,6 +52,11 @@ class APIController extends Controller
     public function answers()
     {
         return AnswerResource::collection(Answer::all());
+    }
+
+    public function game_events()
+    {
+        return GameEventResource::collection(GameEvent::all());
     }
 
     public function courseSubjects($id)
@@ -81,6 +90,11 @@ class APIController extends Controller
 
     public function leaderboards($id)
     {
-        return LeaderboardResource::collection(Leaderboard::where('course_id', $id)->orderBy('score', 'desc')->orderBy('created_at', 'desc')->get(20));
+        return LeaderboardResource::collection(Leaderboard::where('course_id', $id)->orderBy('score', 'desc')->orderBy('created_at', 'desc')->get()->take(20));
+    }
+
+    public function eventLeaderboards($id)
+    {
+        return EventLeaderboardResource::collection(EventLeaderboard::where('game_event_id', $id)->orderBy('score', 'desc')->orderBy('created_at', 'desc')->get()->take(20));
     }
 }

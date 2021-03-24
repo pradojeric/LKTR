@@ -51,6 +51,7 @@
                 @else
                     Finished
                 @endif
+                (@if($gameEvent->status == 1) Activated @else Deactivated @endif)
             </p>
         </div>
 
@@ -60,6 +61,7 @@
                 <div class="d-flex flex-row">
                     <a href="{{ route('game_events.edit', $gameEvent)}}" class="btn btn-sm btn-primary mr-2"><i class="fa fa-edit mr-1"></i>Edit</a>
                     <a href="{{ route('game_events.event_users.index', $gameEvent) }}" class="btn btn-sm btn-secondary mr-2"><i class="fa fa-users mr-1"></i>View Registered User</a>
+                    <a href="{{ route('event_leaderboard', $gameEvent) }}" class="btn btn-sm btn-success mr-2"><i class="fa fa-medal mr-1"></i>View Leaderboard</a>
                     <a href="{{ route('game_events.event_categories.index', $gameEvent) }}" class="btn btn-sm btn-info"><i class="fa fa-eye mr-1"></i>View Categories</a>
                 </div>
             </div>

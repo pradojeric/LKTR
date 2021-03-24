@@ -3,82 +3,95 @@
 @section('content')
 <div class="container">
 
-<div class="row p-3 bg-primary mb-0 jumbotron justify-content-center">
-    <div class="col-md-12">
-        <h3 class="text-center text-white mb-0">Edit {{ $gameEvent->name }}</h3>
+    <div class="row p-3 bg-primary mb-0 jumbotron justify-content-center">
+        <div class="col-md-12">
+            <h3 class="text-center text-white mb-0">Edit {{ $gameEvent->name }}</h3>
+        </div>
     </div>
-</div>
-<form method="POST" action="{{route('game_events.update', $gameEvent)}}">
-@csrf
-@method('put')
-    <div class="row mt-0 jumbotron bg-light justify-content-center">
+    <form method="POST" action="{{route('game_events.update', $gameEvent)}}">
+    @csrf
+    @method('put')
+    <div class="mt-0 jumbotron bg-light justify-content-center">
+        <div class="form-row">
 
             <div class="col-sm form-group">
                 <label>Event Name</label>
                 <input type="text" class="form-control @error('name') is-invalid @enderror" placeholder="Event Name" name="name" value="{{ $gameEvent->name }}">
                 @error('name')
+                <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                </div>
+
+                <div class="col-sm-auto form-group">
+                    <label>Start Date</label>
+                    <input type="date" class="form-control @error('start_date') is-invalid @enderror" name="start_date" value="{{ date('Y-m-d', strtotime($gameEvent->starting_event)) }}">
+                    @error('start_date')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
-                @enderror
+                    @enderror
+                </div>
+
+                <div class="col-sm-auto form-group">
+                    <label>Start Time</label>
+                    <input type="time" class="form-control @error('start_time') is-invalid @enderror" name="start_time" value="{{ date('H:i', strtotime($gameEvent->starting_event)) }}">
+                    @error('start_time')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                </div>
+
+                <div class="col-sm-auto form-group">
+                    <label>End Date</label>
+                    <input type="date" class="form-control @error('end_date') is-invalid @enderror" name="end_date" value="{{ date('Y-m-d', strtotime($gameEvent->ending_event)) }}">
+                    @error('end_date')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                </div>
+
+                <div class="col-sm-auto form-group">
+                    <label>End Time</label>
+                    <input type="time" class="form-control @error('end_time') is-invalid @enderror" name="end_time" value="{{ date('H:i', strtotime($gameEvent->ending_event)) }}">
+                    @error('end_time')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                </div>
             </div>
 
-            <div class="col-sm-auto form-group">
-                <label>Start Date</label>
-                <input type="date" class="form-control @error('start_date') is-invalid @enderror" name="start_date" value="{{ date('Y-m-d', strtotime($gameEvent->starting_event)) }}">
-                @error('start_date')
+            <div class="row">
+                <div class="col-sm-12 form-group">
+                    <label>Description</label>
+                    <textarea class="form-control @error('description') is-invalid @enderror" rows="7" name="description">{{ $gameEvent->description }}</textarea>
+                    @error('description')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
-                @enderror
+                    @enderror
+                </div>
             </div>
 
-            <div class="col-sm-auto form-group">
-                <label>Start Time</label>
-                <input type="time" class="form-control @error('start_time') is-invalid @enderror" name="start_time" value="{{ date('H:i', strtotime($gameEvent->starting_event)) }}">
-                @error('start_time')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
-            </div>
-
-            <div class="col-sm-auto form-group">
-                <label>End Date</label>
-                <input type="date" class="form-control @error('end_date') is-invalid @enderror" name="end_date" value="{{ date('Y-m-d', strtotime($gameEvent->ending_event)) }}">
-                @error('end_date')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
-            </div>
-
-            <div class="col-sm-auto form-group">
-                <label>End Time</label>
-                <input type="time" class="form-control @error('end_time') is-invalid @enderror" name="end_time" value="{{ date('H:i', strtotime($gameEvent->ending_event)) }}">
-                @error('end_time')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
-            </div>
-
-            <div class="col-sm-12 form-group">
-                <label>Description</label>
-                <textarea class="form-control @error('description') is-invalid @enderror" rows="7" name="description">{{ $gameEvent->description }}</textarea>
-                @error('description')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
+            <div class="row">
+                <div class="ml-3 form-check">
+                    <input class="form-check-input" type="checkbox" value="1" id="status" name="status" @if($gameEvent->status == 1) checked @endif>
+                    <label class="form-check-label" for="status">
+                        Activated
+                    </label>
+                </div>
             </div>
 
             <div class="col-sm-12 text-right mt-5">
-            <a href="{{ route('game_events.show', $gameEvent) }}" type="submit" class="btn btn-sm btn-danger"><i class="fa fa-arrow-left mr-1"></i>Cancel</a>
-            <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-save mr-1"></i>Save</button>
+                <a href="{{ route('game_events.show', $gameEvent) }}" type="submit" class="btn btn-sm btn-danger"><i class="fa fa-arrow-left mr-1"></i>Cancel</a>
+                <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-save mr-1"></i>Save</button>
             </div>
 
-    </div>
+        </div>
     </form>
 </div>
 @endsection

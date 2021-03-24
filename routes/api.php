@@ -20,10 +20,14 @@ Route::middleware('auth:sanctum')->get('/lessons', 'APIController@lessons');
 Route::middleware('auth:sanctum')->get('/questions', 'APIController@questions');
 Route::middleware('auth:sanctum')->get('/answers', 'APIController@answers');
 
+Route::middleware('auth:sanctum')->get('/game_events', 'APIController@game_events');
+Route::middleware('auth:sanctum')->get('/event_leaderboards/{event}', 'APIController@eventLeaderboards');
+
 Route::middleware('auth:sanctum')->get('/courses/{course}', 'APIController@courseSubjects');
 Route::middleware('auth:sanctum')->get('/lessons/{lesson}', 'APIController@lessonQuestions');
 Route::middleware('auth:sanctum')->get('/version', 'APIController@version');
 Route::middleware('auth:sanctum')->get('/leaderboards/{course}', 'APIController@leaderboards');
+
 
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return $request->user();

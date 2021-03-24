@@ -135,7 +135,7 @@ class QuestionController extends Controller
 
         $question->update($request->only(['question_text', 'time', 'difficulty', 'justification']));
 
-        return redirect()->route('lesson.questions.index', $question->lesson)->with('success', 'Question is successfully updated');
+        return redirect()->route('lessons.questions.index', $question->lesson)->with('success', 'Question is successfully updated');
     }
 
     /**
@@ -150,7 +150,7 @@ class QuestionController extends Controller
 
         $question->answers()->delete();
         $question->delete();
-        return redirect()->route('lesson.questions.index', $question->lesson);
+        return redirect()->route('lessons.questions.index', $question->lesson);
     }
 
     public function enable(Request $request, Question $question)
@@ -207,7 +207,7 @@ class QuestionController extends Controller
             }
         }
 
-        return redirect()->route('lesson.questions.index', $question->lesson);
+        return redirect()->route('lessons.questions.index', $question->lesson);
     }
 
     public function move($lesson_id, $question_id)
@@ -216,6 +216,6 @@ class QuestionController extends Controller
         $question->lesson_id = $lesson_id;
         $question->save();
 
-        return redirect()->route('lesson.questions.index', $question->lesson);
+        return redirect()->route('lessons.questions.index', $question->lesson);
     }
 }

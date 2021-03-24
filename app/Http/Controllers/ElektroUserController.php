@@ -11,12 +11,12 @@ class ElektroUserController extends Controller
     public function storeUser(Request $request, $code)
     {
         if($code == "arzA-Game+20"){
-            EletkroUser::create([
+            $user = ElektroUser::create([
                 'username' => $request->username,
                 'school' => $request->school,
             ]);
 
-            return "User uploaded";
+            return $user->id;
         }else{
             return "Unauthorized";
         }
@@ -27,7 +27,7 @@ class ElektroUserController extends Controller
         if($code == "arzA-Game+20"){
             $elektroUser = ElektroUser::find($request->uId);
             if($elektroUser == null){
-                EletkroUser::create([
+                ElektroUser::create([
                     'username' => $request->username,
                     'school' => $request->school,
                 ]);

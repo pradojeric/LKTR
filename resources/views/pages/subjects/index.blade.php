@@ -47,7 +47,7 @@
                 event.preventDefault();
                 var id = $(this).data('id');
                 var name = $(this).closest('tr#row').find('#name').text();
-                var url = "{{ url('admin/xyz/subjects/') }}/"+id;
+                var url = "{{ url('/subjects/') }}/"+id;
                 $('#title').text(name);
                 $('#delete-form').attr('action', url);
                 $('#deleteModal').modal('show');

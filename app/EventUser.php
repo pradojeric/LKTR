@@ -18,4 +18,9 @@ class EventUser extends Model
     {
         return $this->belongsTo(GameEvent::class);
     }
+
+    public function userLoaderboard()
+    {
+        return $this->hasMany(GameEvent::class, 'event_users_id');
+    }
 }

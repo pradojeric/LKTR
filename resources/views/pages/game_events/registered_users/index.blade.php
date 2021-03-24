@@ -18,11 +18,26 @@
                             <th>Full Name</th>
                             <th>Email</th>
                             <th>Event Code</th>
+                            <th>Date of Registration</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-
+                        @foreach ($game_event->eventUsers as $user)
+                            <tr>
+                                <td>{{ $user->full_name }}</td>
+                                <td>{{ $user->email }}</td>
+                                <td>{{ $user->code }}</td>
+                                <td>{{ date('m/d/y h:i a',strtotime($user->created_at)) }}</td>
+                                <td>
+                                    @if($user->code)
+                                        <a class="btn btn-sm btn-secondary text-dark" href="#">Revoke Code</a>
+                                    @else
+                                        <a class="btn btn-sm btn-primary text-white" href="{{ route('send_event_code', $user) }}">Accept and Send Code</a>
+                                    @endif
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -35,5 +50,7 @@
 @section('scripts')
 <script>
     $('.table').DataTable();
+
+
 </script>
 @endsection

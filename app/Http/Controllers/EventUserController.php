@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\EventUser;
 use App\GameEvent;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
 
 class EventUserController extends Controller
 {
@@ -83,5 +86,52 @@ class EventUserController extends Controller
     public function destroy(EventUser $eventUser)
     {
         //
+    }
+
+    public function registerUser(Request $request, $code)
+    {
+        if($code == "arzA-Game+20"){
+
+            $validator = Validator::make($request->all(),[
+                'email' => 'required|email|unique:event_users,email',
+                'full_name' => 'required',
+            ]);
+
+            if($validator->fails()){
+                return response()->json(['error' => $validator->errors()->all()]);
+            }
+
+            $user = EventUser::create([
+                'game_event_id' => $request->game_event_id,
+                'full_name' => $request->full_name,
+                'email' => $request->email,
+            ]);
+
+            return response()->json(['id' => $user->id]);
+        }
+        else
+        {
+            return "Unauthorized";
+        }
+    }
+
+    public function sendEventCode(EventUser $event_user)
+    {
+        $random_code = Str::random(8);
+
+        $event_user->code = $random_code;
+        $event_user->save();
+        Mail::to('arzatech.mail@gmail.com')->send(new \App\Mail\SendEventCode($event_user));
+
+        return redirect()->route('game_events.event_users.index', $event_user->gameEvent);
+    }
+
+    public function revokeCode(EventUser $event_user)
+    {
+        $event_user->code = null;
+        $event_user->save();
+
+        return redirect()->route('game_events.event_users.index', $event_user->gameEvent);
+
     }
 }
