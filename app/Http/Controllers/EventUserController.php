@@ -109,11 +109,48 @@ class EventUserController extends Controller
                 'email' => $request->email,
             ]);
 
-            return response()->json(['id' => $user->id]);
+            return response()->json($user);
         }
         else
         {
-            return "Unauthorized";
+            return response()->json(['error' => "Unauthorized"]);
+        }
+    }
+
+    public function checkEventCode(Request $request, $code)
+    {
+        if($code == "arzA-Game+20"){
+
+            $validator = Validator::make($request->all(),[
+                'id' => 'required',
+                'event_code' => 'required',
+            ]);
+
+            if($validator->fails()){
+                return response()->json(['error' => $validator->errors()->all()]);
+            }
+
+            $user = EventUser::find($request->id);
+
+            if($user != null)
+            {
+                if($user->code == $request->event_code)
+                {
+                    return response()->json(['ok' => "Event Entered successfully"]);
+                }
+                else
+                {
+                    return response()->json(['error' => "You do not own this code!"]);
+                }
+            }
+            else
+            {
+                return response()->json(['error' => "You are not registered yet!"]);
+            }
+        }
+        else
+        {
+            return response()->json(['error' => "Unauthorized"]);
         }
     }
 
@@ -123,7 +160,7 @@ class EventUserController extends Controller
 
         $event_user->code = $random_code;
         $event_user->save();
-        Mail::to('arzatech.mail@gmail.com')->send(new \App\Mail\SendEventCode($event_user));
+        Mail::to($event_user->email)->send(new \App\Mail\SendEventCode($event_user));
 
         return redirect()->route('game_events.event_users.index', $event_user->gameEvent);
     }
