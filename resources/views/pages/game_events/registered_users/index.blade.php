@@ -8,7 +8,7 @@
 </div>
 </div>
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-10">
             <a href="{{ route('game_events.show', $game_event) }}" type="button" class="btn btn-danger my-3"><i class="fa fa-arrow-left mr-2"></i>Back</a>
             <div class="card p-4 shadow-sm rounded">
 
@@ -20,10 +20,11 @@
                             <th>Event Code</th>
                             <th>Date of Registration</th>
                             <th>Action</th>
+                            <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($game_event->eventUsers as $user)
+                        @foreach ($game_event->users as $user)
                             <tr>
                                 <td>{{ $user->full_name }}</td>
                                 <td>{{ $user->email }}</td>
@@ -35,6 +36,13 @@
                                     @else
                                         <a class="btn btn-sm btn-primary text-white" href="{{ route('send_event_code', $user) }}">Accept and Send Code</a>
                                     @endif
+                                </td>
+                                <td>
+                                    <button class="btn btn-danger text-white" type="button" onclick="event.preventDefault(); document.getElementById('delete_user{{ $user->id }}').submit();"><i class="fa fa-trash"></i></button>
+                                    <form method="post" action="{{ route('event_users.destroy', $user) }}" id="delete_user{{ $user->id }}">
+                                        @csrf
+                                        @method('delete')
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach
@@ -49,7 +57,9 @@
 
 @section('scripts')
 <script>
-    $('.table').DataTable();
+    $('.table').DataTable({
+        'ordering': false,
+    });
 
 
 </script>

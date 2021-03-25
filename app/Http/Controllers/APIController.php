@@ -90,7 +90,7 @@ class APIController extends Controller
 
     public function leaderboards($id)
     {
-        return LeaderboardResource::collection(Leaderboard::where('course_id', $id)->orderBy('score', 'desc')->orderBy('created_at', 'desc')->get()->take(20));
+        return LeaderboardResource::collection(Leaderboard::where('course_id', $id)->orderBy('score', 'desc')->orderBy('updated_at', 'asc')->get()->take(20));
     }
 
     public function eventLeaderboards($id)

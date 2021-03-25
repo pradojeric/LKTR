@@ -18,6 +18,6 @@ class Leaderboard extends Model
 
     public function elektroUser()
     {
-        return $this->belongsTo(ElektroUser::class, 'elektro_user_id');
+        return $this->belongsTo(ElektroUser::class, 'elektro_users_id');
     }
 }

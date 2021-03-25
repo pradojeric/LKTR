@@ -14,7 +14,7 @@ class EventUser extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function gameEvent(): BelongsTo
+    public function gameEvent()
     {
         return $this->belongsTo(GameEvent::class);
     }

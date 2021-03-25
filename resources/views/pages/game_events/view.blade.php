@@ -22,7 +22,7 @@
             <h5 class="font-weight-bold">Event Description</h5>
         </div>
         <div class="col-md-9">
-            <p class="font-italic">{{ $gameEvent->description }}</p>
+            <p class="font-italic" style="white-space: pre">{{ $gameEvent->description }}</p>
         </div>
 
         <div class="col-md-3">

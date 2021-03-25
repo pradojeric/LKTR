@@ -11,7 +11,7 @@ class EventLeaderboard extends Model
 
     public function gameEvent()
     {
-        return $this->belongsTo(GameEvent::class);
+        return $this->belongsTo(GameEvent::class, 'game_event_id');
     }
 
     public function eventUser()

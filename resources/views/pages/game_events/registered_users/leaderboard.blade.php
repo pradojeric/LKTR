@@ -16,26 +16,16 @@
                     <thead class="bg-primary text-white">
                         <tr>
                             <th>Full Name</th>
-                            <th>Email</th>
-                            <th>Event Code</th>
-                            <th>Date of Registration</th>
-                            <th>Action</th>
+                            <th>Score</th>
+                            <th>Updated Date</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($game_event->eventUsers as $user)
+                        @foreach ($game_event->eventLeaderboards as $user)
                             <tr>
-                                <td>{{ $user->full_name }}</td>
-                                <td>{{ $user->email }}</td>
-                                <td>{{ $user->code }}</td>
-                                <td>{{ date('m/d/y h:i a',strtotime($user->created_at)) }}</td>
-                                <td>
-                                    @if($user->code)
-                                        <a class="btn btn-sm btn-secondary text-dark" href="#">Revoke Code</a>
-                                    @else
-                                        <a class="btn btn-sm btn-primary text-white" href="{{ route('send_event_code', $user) }}">Accept and Send Code</a>
-                                    @endif
-                                </td>
+                                <td>{{ $user->eventUser->full_name }}</td>
+                                <td>{{ $user->score }}</td>
+                                <td>{{ $user->updated_at }}</td>
                             </tr>
                         @endforeach
                     </tbody>

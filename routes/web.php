@@ -1,8 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Resources\Courses as CourseResources;
-use App\Course;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -46,8 +45,6 @@ Route::get('/getDownloadBar/{code}', 'APIController@progressBar');
 Route::post('/register_user', 'EventUserController@registerUser');
 Route::post('/check_event_code/{code}', 'EventUserController@checkEventCode')->name('check_event_code');
 Route::delete('/delete/event_users/{game_event}', 'EventUserController@deleteAll')->name('delete_event_users');
-
-
 
 Route::middleware('auth')->group(function()
 {

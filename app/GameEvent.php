@@ -20,6 +20,11 @@ class GameEvent extends Model
         return $this->hasMany(EventUser::class);
     }
 
+    public function getUsersAttribute()
+    {
+        return $this->eventUsers()->orderBy('created_at', 'desc')->get();
+    }
+
     /**
      * Get all of the eventCategories for the GameEvent
      *
