@@ -25,7 +25,7 @@
                             <tr>
                                 <td>{{ $user->eventUser->full_name }}</td>
                                 <td>{{ $user->score }}</td>
-                                <td>{{ $user->updated_at }}</td>
+                                <td>{{ $user->updated_date }}</td>
                             </tr>
                         @endforeach
                     </tbody>
