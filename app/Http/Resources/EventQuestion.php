@@ -16,7 +16,8 @@ class EventQuestion extends JsonResource
     public function toArray($request)
     {
         return [
-            'id' => $this->event_category_id,
+            'id' => $this->id,
+            'event_category_id' => $this->event_category_id,
             'question_text' => $this->question_text,
             'time' => $this->time,
             'event_answers' => EventAnswerResource::collection($this->eventAnswers),
