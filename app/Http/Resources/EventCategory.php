@@ -17,7 +17,8 @@ class EventCategory extends JsonResource
     {
         return [
             'id' => $this->id,
-            'game_event_id' => $this->category,
+            'game_event_id' => $this->game_event_id,
+            'category' => $this->category,
             'event_questions' => EventQuestionResources::collection($this->eventQuestions),
         ];
     }
