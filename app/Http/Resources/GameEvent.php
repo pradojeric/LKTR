@@ -19,7 +19,7 @@ class GameEvent extends JsonResource
             'id' => $this->id,
             'event_name' => $this->name,
             'description' => $this->description,
-            'starting_time' => $this->starting_event,
+            'starting_event' => $this->starting_event,
             'ending_time' => $this->ending_event,
             'event_category' => EventCategoryResources::collection($this->eventCategories),
         ];
