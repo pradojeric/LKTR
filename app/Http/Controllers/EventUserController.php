@@ -86,6 +86,7 @@ class EventUserController extends Controller
     public function destroy(EventUser $eventUser)
     {
         //
+        $eventUser->delete();
 
         return redirect()->route('game_events.event_users.index', $eventUser->gameEvent);
     }
