@@ -30,6 +30,8 @@ Route::get('/logout', function(){
    return redirect()->route('home');
 });
 
+
+
 Route::middleware('auth')->group(function()
 {
     Route::resource('abilities', 'AbilityController')->middleware('can:admin-only');

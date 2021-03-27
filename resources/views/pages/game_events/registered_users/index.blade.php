@@ -32,7 +32,7 @@
                                 <td>{{ date('m/d/y h:i a',strtotime($user->created_at)) }}</td>
                                 <td>
                                     @if($user->code)
-                                        <a class="btn btn-sm btn-secondary text-dark" href="#">Revoke Code</a>
+                                        <a class="btn btn-sm btn-secondary text-dark" href="{{ route('revoke_code', $user) }}">Revoke Code</a>
                                     @else
                                         <a class="btn btn-sm btn-primary text-white" href="{{ route('send_event_code', $user) }}">Accept and Send Code</a>
                                     @endif

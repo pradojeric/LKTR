@@ -12,16 +12,18 @@ class SendEventCode extends Mailable
     use Queueable, SerializesModels;
 
     public $details;
+    public $event;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($details)
+    public function __construct($details, $event)
     {
         //
         $this->details = $details;
+        $this->event = $event;
     }
 
     /**

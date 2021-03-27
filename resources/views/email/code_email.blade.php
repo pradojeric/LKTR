@@ -7,8 +7,36 @@
     <title>Elektro Event Code</title>
 </head>
 <body>
-    <h1>Event Code</h1>
-    <p>Good day! Thank you for registering to the event. Here is the event code: {{ $details['code'] }}</p>
-    <p>Thank you</p>
+    <div class="container">
+        <div class="email-container">
+            <div class="upper-email">
+                <img src="{{ asset('img/banner.jpg') }}" alt="banner">
+            </div>
+            <div class="event-period">
+                {{ date('M d, Y h:i a', strtotime($event['starting_event'])) }} - {{  date('M d, Y h:i a', strtotime($event['ending_event'])) }}
+            </div>
+            <div class="email-body">
+                <div class="greetings-header">
+                    Welcome {{ $details['full_name'] }}!;
+                </div>
+
+                <div class="greeting">
+                    Thank you for registering!
+                    <br>
+                    You can now participate at the <b>Elektro Quiz Bee</b> on {{ date('M d, Y', strtotime($event['starting_event'])) }}!
+                    <br><br>
+                    Please check below for your pre-registration event code.
+                </div>
+
+                <div class="code">
+                    <h4>{{ $details['code'] }}</h4>
+                </div>
+
+                <div class="mechanics">
+                    <img src="{{ asset('img/eventDetails.png') }}" alt="EventDetails">
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
