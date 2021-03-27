@@ -9,7 +9,12 @@
 </div>
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <a href="{{ route('game_events.show', $game_event) }}" type="button" class="btn btn-danger my-3"><i class="fa fa-arrow-left mr-2"></i>Back</a>
+            <a href="{{ route('game_events.show', $game_event) }}" type="button" class="btn btn-info my-3"><i class="fa fa-arrow-left mr-2"></i>Back</a>
+            <button class="btn btn-danger my-3 ml-2" type="button" onclick="event.preventDefault();document.getElementById('delete_leaderboard').submit();"><i class="fa fa-trash mr-2"></i>Delete All</button>
+            <form action="{{ route('delete_event_leaderboard', $game_event) }}" method="post" id="delete_leaderboard">
+                @csrf
+                @method('delete')
+            </form>
             <div class="card p-4 shadow-sm rounded">
 
                 <table class="table table-striped bg-light border-0">

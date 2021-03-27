@@ -68,6 +68,7 @@ Route::middleware('auth')->group(function()
         Route::get('/game_events/revoke_code/{event_user}', 'EventUserController@revokeCode')->name('revoke_code');
 
         Route::get('/event/{game_event}/leaderboard', 'EventLeaderboardController@index')->name('event_leaderboard');
+        Route::delete('/event/{game_event}/delete_leaderboard', 'EventLeaderboardController@destroyAll')->name('delete_event_leaderboard');
 
         Route::resource('game_events.event_categories', 'EventCategoryController')->shallow();
         Route::resource('event_categories.event_questions', 'EventQuestionController')->shallow();

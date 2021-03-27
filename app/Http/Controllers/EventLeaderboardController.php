@@ -13,6 +13,14 @@ class EventLeaderboardController extends Controller
         return view('pages.game_events.registered_users.leaderboard', compact('game_event'));
     }
 
+    public function destroyAll(GameEvent $game_event)
+    {
+
+        $game_event->eventLeaderboards()->delete();
+
+        return redirect()->route('event_leaderboard', $game_event);
+    }
+
     //
     public function uploadScore(Request $request, $code)
     {
