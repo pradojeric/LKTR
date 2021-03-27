@@ -23,4 +23,9 @@ class EventUser extends Model
     {
         return $this->hasMany(GameEvent::class, 'event_users_id');
     }
+
+    public function setEmailAttribute($value)
+    {
+        $this->attributes['email'] = strtolower($value);
+    }
 }

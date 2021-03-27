@@ -30,24 +30,6 @@ Route::get('/logout', function(){
    return redirect()->route('home');
 });
 
-Route::get('/token/{code}', function($code){
-    if($code == "arzA-Game+20")
-        return csrf_token();
-    else
-        return "error";
-});
-
-Route::get('/get_server_time', 'ServerTimeController@getServerTime');
-
-Route::post('/uploadScore/{code}', 'LeaderboardController@uploadScore');
-Route::post('/storeUser/{code}', 'ElektroUserController@storeUser');
-Route::post('/updateUser/{code}', 'ElektroUserController@updateUser');
-Route::get('/getDownloadBar/{code}', 'APIController@progressBar');
-
-Route::post('/register_user', 'EventUserController@registerUser');
-Route::post('/check_event_code/{code}', 'EventUserController@checkEventCode')->name('check_event_code');
-Route::delete('/delete/event_users/{game_event}', 'EventUserController@deleteAll')->name('delete_event_users');
-
 Route::middleware('auth')->group(function()
 {
     Route::resource('abilities', 'AbilityController')->middleware('can:admin-only');
@@ -66,6 +48,7 @@ Route::middleware('auth')->group(function()
 
         Route::get('/game_events/send_event_code/{event_user}', 'EventUserController@sendEventCode')->name('send_event_code');
         Route::get('/game_events/revoke_code/{event_user}', 'EventUserController@revokeCode')->name('revoke_code');
+        Route::delete('/delete/event_users/{game_event}', 'EventUserController@deleteAll')->name('delete_event_users');
 
         Route::get('/event/{game_event}/leaderboard', 'EventLeaderboardController@index')->name('event_leaderboard');
         Route::delete('/event/{game_event}/delete_leaderboard', 'EventLeaderboardController@destroyAll')->name('delete_event_leaderboard');

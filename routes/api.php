@@ -28,6 +28,23 @@ Route::middleware('auth:sanctum')->get('/lessons/{lesson}', 'APIController@lesso
 Route::middleware('auth:sanctum')->get('/version', 'APIController@version');
 Route::middleware('auth:sanctum')->get('/leaderboards/{course}', 'APIController@leaderboards');
 
+Route::get('/get_server_time', 'ServerTimeController@getServerTime');
+
+Route::get('/token/{code}', function($code){
+    if($code == "arzA-Game+20")
+        return csrf_token();
+    else
+        return "error";
+});
+
+Route::post('/uploadScore/{code}', 'LeaderboardController@uploadScore');
+Route::post('/storeUser/{code}', 'ElektroUserController@storeUser');
+Route::post('/updateUser/{code}', 'ElektroUserController@updateUser');
+Route::get('/getDownloadBar/{code}', 'APIController@progressBar');
+
+Route::post('/register_user/{code}', 'EventUserController@registerUser');
+Route::post('/check_event_code/{code}', 'EventUserController@checkEventCode')->name('check_event_code');
+
 
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return $request->user();

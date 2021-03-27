@@ -117,6 +117,17 @@ class EventUserController extends Controller
         }
     }
 
+    public function checkRegisteredUser($id)
+    {
+        $user = EventUser::find($id);
+        if($user == null){
+            return response()->json(['error' => 'User not found']);
+        }
+        else{
+            return response()->json(['ok' => 'User OK']);
+        }
+    }
+
     public function checkEventCode(Request $request, $code)
     {
         if($code == "arzA-Game+20"){
