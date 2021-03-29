@@ -30,7 +30,11 @@ Route::get('/logout', function(){
    return redirect()->route('home');
 });
 
-
+Route::get('/testtest/', function(){
+    $event = ['starting_event' => '', 'ending_event' => ''];
+    $details = ['full_name' => 'Test', 'code' => '123213'];
+    return view('email.code_email', compact('details', 'event'));
+});
 
 Route::middleware('auth')->group(function()
 {
