@@ -7,7 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class EventUser extends Model
 {
     //
-    protected $guarded = [];
+    protected $fillable = [
+        'game_event_id', 'full_name', 'email', 'code'
+    ];
 
     /**
      * Get the gameEvent that owns the EventUser

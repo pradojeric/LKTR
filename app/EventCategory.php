@@ -8,7 +8,7 @@ class EventCategory extends Model
 {
     //
     protected $fillable = [
-        'category'
+        'category', 'game_event_id'
     ];
 
     /**

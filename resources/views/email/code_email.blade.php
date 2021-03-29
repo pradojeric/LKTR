@@ -105,7 +105,7 @@
     <div class="container">
         <div class="email-container">
             <div class="upper-email">
-                <img src="{{ url('/img/banner.jpg') }}" alt="banner">
+                <img src="{{ asset('img/banner.jpg') }}" alt="banner">
             </div>
             <div class="event-period">
                 {{ date('M d, Y h:i a', strtotime($event['starting_event'])) }} - {{  date('M d, Y h:i a', strtotime($event['ending_event'])) }}
@@ -128,7 +128,7 @@
                 </div>
 
                 <div class="mechanics">
-                    <img src="{{ url('/img/eventDetails.jpg') }}" alt="EventDetails">
+                    <img src="{{ asset('img/eventDetails.png') }}" alt="EventDetails">
                 </div>
             </div>
         </div>

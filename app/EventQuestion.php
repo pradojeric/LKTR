@@ -7,9 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class EventQuestion extends Model
 {
     //
-
-    protected $guarded = [];
-
     protected $fillable = [
         'event_category_id', 'question_text', 'enabled', 'time'
     ];

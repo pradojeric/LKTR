@@ -7,7 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class EventLeaderboard extends Model
 {
     //
-    protected $guarded = [];
+    protected $fillable = [
+        'game_event_id', 'event_user_id', 'score'
+    ];
 
     public function getUpdatedDateAttribute()
     {
