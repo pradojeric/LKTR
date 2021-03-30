@@ -172,7 +172,7 @@ class EventQuestionController extends Controller
             }
         }
 
-        return redirect()->route('event_categories.event_questions.index', $eventQuestion->eventCategory);
+        return redirect()->route('event_categories.event_questions.index', $question->eventCategory);
     }
 
     public function move($category_id, $question_id)
@@ -181,6 +181,6 @@ class EventQuestionController extends Controller
         $question->event_category_id = $category_id;
         $question->save();
 
-        return redirect()->route('event_categories.event_questions.index', $eventQuestion->eventCategory);
+        return redirect()->route('event_categories.event_questions.index', $question->eventCategory);
     }
 }
