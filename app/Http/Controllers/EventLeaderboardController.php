@@ -24,12 +24,13 @@ class EventLeaderboardController extends Controller
     //
     public function uploadScore(Request $request, $code)
     {
+        return $request;
         if($code == "arzA-Game+20"){
             EventLeaderboard::updateOrCreate([
-                'event_user_id' => $request->uId,
+                'event_users_id' => $request->uId,
                 'game_event_id' => $request->course_id,
             ],[
-                'event_user_id' => $request->uId,
+                'event_users_id' => $request->uId,
                 'game_event_id' => $request->course_id,
                 'score' => $request->score,
             ]);

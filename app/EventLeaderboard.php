@@ -8,7 +8,7 @@ class EventLeaderboard extends Model
 {
     //
     protected $fillable = [
-        'game_event_id', 'event_user_id', 'score'
+        'game_event_id', 'event_users_id', 'score'
     ];
 
     public function getUpdatedDateAttribute()

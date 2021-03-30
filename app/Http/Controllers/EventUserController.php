@@ -173,8 +173,8 @@ class EventUserController extends Controller
 
         $event_user->code = $random_code;
         $event_user->save();
-        //Mail::to($event_user->email)->send(new \App\Mail\SendEventCode($event_user, $event_user->gameEvent));
-        SendEventEmailJob::dispatch($event_user)->delay(now()->addSeconds(10));
+        Mail::to($event_user->email)->send(new \App\Mail\SendEventCode($event_user, $event_user->gameEvent));
+        //SendEventEmailJob::dispatch($event_user)->delay(now()->addSeconds(10));
 
         return redirect()->route('game_events.event_users.index', $event_user->gameEvent);
     }
