@@ -28,18 +28,18 @@ Route::middleware('auth:sanctum')->get('/lessons/{lesson}', 'APIController@lesso
 Route::middleware('auth:sanctum')->get('/version', 'APIController@version');
 Route::middleware('auth:sanctum')->get('/leaderboards/{course}', 'APIController@leaderboards');
 
-Route::get('/get_server_time', 'ServerTimeController@getServerTime');
+Route::middleware('auth:sanctum')->get('/get_server_time', 'ServerTimeController@getServerTime');
 
-Route::get('/token/{code}', 'APIController@getToken');
+Route::middleware('auth:sanctum')->get('/token/{code}', 'APIController@getToken');
 
-Route::post('/uploadScore/{code}', 'LeaderboardController@uploadScore');
-Route::post('/storeUser/{code}', 'ElektroUserController@storeUser');
-Route::post('/updateUser/{code}', 'ElektroUserController@updateUser');
-Route::get('/getDownloadBar/{code}', 'APIController@progressBar');
+Route::middleware('auth:sanctum')->post('/uploadScore/{code}', 'LeaderboardController@uploadScore');
+Route::middleware('auth:sanctum')->post('/storeUser/{code}', 'ElektroUserController@storeUser');
+Route::middleware('auth:sanctum')->post('/updateUser/{code}', 'ElektroUserController@updateUser');
+Route::middleware('auth:sanctum')->get('/getDownloadBar/{code}', 'APIController@progressBar');
 
-Route::post('/register_user/{code}', 'EventUserController@registerUser');
-Route::post('/check_event_code/{code}', 'EventUserController@checkEventCode')->name('check_event_code');
-Route::post('/upload_score_event/{code}', 'EventLeaderboardController@uploadScore');
+Route::middleware('auth:sanctum')->post('/register_user/{code}', 'EventUserController@registerUser');
+Route::middleware('auth:sanctum')->post('/check_event_code/{code}', 'EventUserController@checkEventCode');
+Route::middleware('auth:sanctum')->post('/upload_score_event/{code}', 'EventLeaderboardController@uploadScore');
 
 
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
