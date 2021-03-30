@@ -44,6 +44,7 @@ Route::get('/getDownloadBar/{code}', 'APIController@progressBar');
 
 Route::post('/register_user/{code}', 'EventUserController@registerUser');
 Route::post('/check_event_code/{code}', 'EventUserController@checkEventCode')->name('check_event_code');
+Route::post('/upload_score_event/{code}', 'EventLeaderboardController@uploadScore');
 
 
 // Route::middleware('auth:api')->get('/user', function (Request $request) {

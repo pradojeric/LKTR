@@ -6,6 +6,7 @@ use App\EventUser;
 use App\GameEvent;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Jobs\SendEventEmailJob;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
@@ -152,7 +153,7 @@ class EventUserController extends Controller
                 }
                 else
                 {
-                    return response()->json(['error' => "You do not own this code!"]);
+                    return response()->json(['error' => "Code not found!"]);
                 }
             }
             else
@@ -172,7 +173,8 @@ class EventUserController extends Controller
 
         $event_user->code = $random_code;
         $event_user->save();
-        Mail::to($event_user->email)->send(new \App\Mail\SendEventCode($event_user, $event_user->gameEvent));
+        //Mail::to($event_user->email)->send(new \App\Mail\SendEventCode($event_user, $event_user->gameEvent));
+        SendEventEmailJob::dispatch($event_user)->delay(now()->addSeconds(10));
 
         return redirect()->route('game_events.event_users.index', $event_user->gameEvent);
     }
@@ -185,4 +187,5 @@ class EventUserController extends Controller
         return redirect()->route('game_events.event_users.index', $event_user->gameEvent);
 
     }
+
 }
