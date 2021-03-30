@@ -24,7 +24,6 @@ class EventLeaderboardController extends Controller
     //
     public function uploadScore(Request $request, $code)
     {
-        return $request;
         if($code == "arzA-Game+20"){
             EventLeaderboard::updateOrCreate([
                 'event_users_id' => $request->uId,
