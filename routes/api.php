@@ -30,12 +30,7 @@ Route::middleware('auth:sanctum')->get('/leaderboards/{course}', 'APIController@
 
 Route::get('/get_server_time', 'ServerTimeController@getServerTime');
 
-Route::get('/token/{code}', function($code){
-    if($code == "arzA-Game+20")
-        return csrf_token();
-    else
-        return "error";
-});
+Route::get('/token/{code}', 'APIController@getToken');
 
 Route::post('/uploadScore/{code}', 'LeaderboardController@uploadScore');
 Route::post('/storeUser/{code}', 'ElektroUserController@storeUser');

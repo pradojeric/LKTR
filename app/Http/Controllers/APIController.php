@@ -97,4 +97,12 @@ class APIController extends Controller
     {
         return EventLeaderboardResource::collection(EventLeaderboard::where('game_event_id', $id)->orderBy('score', 'desc')->orderBy('created_at', 'desc')->get()->take(20));
     }
+
+    public function getToken($code)
+    {
+        if($code == "arzA-Game+20")
+            return csrf_token();
+        else
+            return "error";
+    }
 }
