@@ -80,7 +80,13 @@ Route::middleware('auth')->group(function()
     Route::delete('/destroyToken', 'UserController@destroyToken')->name('destroy-token')->middleware('can:admin-only');
     Route::get('/all-subjects', 'SubjectController@viewAll')->name('subjects');
 
+
 });
+
+Route::get('/backup', 'BackupController@index')->name('backup.index');
+Route::get('/backup/create', 'BackupController@create')->name('backup.create');
+Route::get('/backup/download/{file_name}', 'BackupController@download')->name('backup.download');
+Route::get('/backup/delete/{file_name}', 'BackupController@delete')->name('backup.delete');
 
 // Route::get('/videos', 'VideosController@index')->name('videos');
 // Route::get('/viewvideos', 'VideosController@show')->name('viewvideos');

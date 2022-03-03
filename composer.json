@@ -15,7 +15,8 @@
         "laravel/framework": "^7.24",
         "laravel/sanctum": "^2.8",
         "laravel/tinker": "^2.0",
-        "laravel/ui": "^2.4"
+        "laravel/ui": "^2.4",
+        "spatie/laravel-backup": "^6.16"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.8.2",
